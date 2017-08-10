@@ -1,0 +1,167 @@
+nav {
+	width: 100%;
+	height: 120px;
+	background: #ccc;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 50px;
+	padding-top: 50px;
+}
+nav button {
+	height: 80px;
+	font-size: 50px;
+	margin-left: 25%;
+	margin-right: 5%;
+}
+nav span {
+	margin-left: 10%;
+}
+.level {
+	display: flex;
+	justify-content: space-around;
+	height: 100px;
+	width: 100%;
+    font-size: 40px;
+    background: #fcf;   
+}
+.level img {
+    width: 150px;
+    height: 100%;
+}
+.status {
+	display: flex;
+	justify-content: space-around;
+	height: 100px;
+	width: 100%;
+    font-size: 40px;
+	background: #ccc;
+}
+.status img {
+    width: 150px;
+    height: 100%;
+}
+.content {
+	width: 100%;
+	font-size: 50px;
+}
+textarea {
+	width: 100%;
+	height: 300px;
+	font-size: 50px;
+}
+
+.line-wrapper {
+position: relative;
+height: 144px; 
+margin-top: 20px;
+overflow: hidden; 
+font-size: 28px; 
+border-bottom: 1px solid #aaa; 
+}
+.line-scroll-wrapper { 
+	white-space: nowrap; 
+	height: 144px; 
+	clear: both; 
+}
+.line-btn-delete { 
+	float: right; 
+	width: 264px; 
+	height: 144px; 
+}
+.line-btn-delete button { 
+	width: 50%; 
+	height: 100%; 
+	background: red; 
+	border: none; 
+	font-size: 24px; 
+	font-family: 'Microsoft Yahei'; 
+	color: #fff;
+}
+.line-btn-level {
+	float: left;
+	width: 396px;
+	height: 144px;
+	margin-left: -396px;
+}
+.line-btn-level button {
+	width: 33%;
+	height: 100%;
+	background: red;
+	border: none;
+	font-size: 24px;
+	font-family: "Microsoft Yahei";
+	color: #fff;
+}
+.line-normal-wrapper { 
+	display: inline-block; 
+	line-height: 100px; 
+	float: left; 
+	padding-top: 10px; 
+	padding-bottom: 10px; 
+}
+.line-normal-avatar-wrapper { 
+	width: 100px; 
+	height: 124px; 
+	float: left; 
+	margin-left: 12px; 
+}
+.line-normal-avatar-wrapper img { 
+	width: 92px; 
+	height: 92px; 
+	// border-radius: 60px; 
+}
+.line-normal-left-wrapper { 
+	float: left; 
+	overflow: hidden; 
+}
+.line-normal-info-wrapper { 
+	float: left; 
+	margin-left: 10px; 
+}
+.line-normal-msg { 
+	position: absolute;
+	width: 400px;
+	height: 144px;
+	color: #000; 
+	font-size: 50px;
+	line-height: 28px; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	margin-top: 11px;
+}
+.now {
+	background: url(./assets/images/45_66_03.png) no-repeat;
+	background-size: 100% 100%;
+}
+.pause {
+	background: url(./assets/images/45_66_08.png) no-repeat;
+	background-size: 100% 100%;
+}
+.over {
+	background: url(./assets/images/45_66_06.png) no-repeat;
+	background-size: 100% 100%;
+}
+.high {
+	background-color: red;
+}
+.mid {
+	background-color: yellow;
+}
+.low {
+	background-color: green;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 150px;
+	background: #ccc;
+	display: flex;
+	justify-content: space-around;
+}	
+footer button {
+    height: 80px;
+    font-size: 50px;
+    margin-top: 50px;
+}

@@ -1,0 +1,163 @@
+<template>
+	<div>
+	    <nav>
+			<button s-if="active" id="cancel" on-click="showAll">Cancel</button>
+			<span>{{ title }}</span>
+			<button s-if="!active" on-click="addTask">Add</button>
+			<button s-if="active" on-click="addCompleted">Done</button>
+		</nav>
+        
+        <div class="level" on-click="chooseLevel($event)">
+        	<span><img src="../assets/images/45_66_11.png" id="high-level"></span>
+    		<span><img src="../assets/images/45_66_13.png" id="mid-level"></span>
+    		<span><img src="../assets/images/45_66_15.png" id="low-level"></span>
+        </div>
+        <div class="status" on-click="chooseStatus($event)">
+        	<span><img src="../assets/images/45_66_20.png" id="doing"></span>
+    		<span><img src="../assets/images/45_66_21.png" id="waiting"></span>
+    		<span><img src="../assets/images/45_66_22.png" id="completed"></span>
+        </div>
+        <textarea s-if="active"></textarea>
+        <div class="content" s-if="!active" on-click="changeTask($event)">
+        	<div class="one-thing" s-if="showTing">
+        		<h3>Now!The one thing is</h3>
+        		<div s-for="todo in doingNow">
+        			<div class="line-wrapper">
+					<div class="line-scroll-wrapper">
+					    <div class="line-normal-wrapper">
+					      <div class="line-btn-level"><button class="complete">已完成</button><button class="wait">待办</button><button class="doing">进行中</button></div>
+					      <div class="line-normal-left-wrapper">
+					        <div class="{{todo.level}} {{todo.status}} line-normal-avatar-wrapper"></div>
+					        <div class="line-normal-info-wrapper">
+					          <div class="line-normal-msg">{{ todo.content }}</div>
+					        </div>
+					      </div>
+					    </div>
+					    <div class="line-btn-delete"><button class="compile">编辑</button><button class="del" >删除</button></div>
+					</div>
+				</div>
+        		</div>
+        	</div>
+            <div class="all" s-if="!showTing"
+                 s-for="todo in Todos"
+            >
+            	<div class="line-wrapper">
+					<div class="line-scroll-wrapper">
+					    <div class="line-normal-wrapper">
+					      <div class="line-btn-level"><button class="complete">已完成</button><button class="wait">待办</button><button class="doing">进行中</button></div>
+					      <div class="line-normal-left-wrapper">
+					        <div class="{{todo.level}} {{todo.status}} line-normal-avatar-wrapper"></div>
+					        <div class="line-normal-info-wrapper">
+					          <div class="line-normal-msg">{{ todo.content }}</div>
+					        </div>
+					      </div>
+					    </div>
+					    <div class="line-btn-delete"><button class="compile">编辑</button><button class="del" >删除</button></div>
+					</div>
+				</div>
+            </div>        	
+        </div>
+        <footer>
+		<button on-click="showOneThing">oneThing</button>
+		<button on-click="showAll">All</button>
+		</footer>
+	</div>
+</template>
+
+<script>
+    import Tasks from "../Todos"
+    import "../main.css"
+    import $ from 'jquery'
+
+    export default {
+		initData: function() {
+			return {
+				title: "Todos",
+				active: false,
+				showTing: true,
+				Todos: Tasks.task,
+				doingNow:[],
+				taskContent: "",
+				taskStatus: "",
+				taskLevel:""
+			}
+		},
+		showOneThing: function() {
+            this.data.set("showTing",true);
+            this.data.set("active",false);
+            for (var i = 0; i < Tasks.task.length; i++) {
+            if (Tasks.task[i].level == "high" && Tasks.task[i].status == "now") {
+                this.data.set("doingNow",[]);
+                this.data.push("doingNow",Tasks.task[i]);
+            }	
+            }
+		},
+		showAll: function() {
+            this.data.set("showTing",false);
+            this.data.set("active",false);
+		},
+		addTask: function() {
+			this.data.set("active",true);
+		},
+		addCompleted: function() {
+            this.data.set("taskContent", $("textarea").val());
+            this.data.unshift("Todos",{"level":this.data.get("taskLevel"),"status":this.data.get("taskStatus"),"content":this.data.get("taskContent")});
+            // this.data.set("Todos",Tasks.task);
+            this.data.set("showTing",false);
+            this.data.set("active",false);
+		},
+		delTask: function() {
+
+		},
+		chooseLevel: function(e) {
+            switch(e.target.id) {
+            	case "high-level":
+            		this.data.set("taskLevel","high");
+            		break;
+            	case "mid-level":
+            		this.data.set("taskLevel","mid");
+            		break;
+                case "low-level":
+            		this.data.set("taskLevel","low");
+            		break;
+            }
+		},
+		chooseStatus: function(e) {
+			switch(e.target.id) {
+            	case "doing":
+            		this.data.set("taskStatus","now");
+            		break;
+            	case "waiting":
+            		this.data.set("taskStatus","pause");
+            		break;
+                case "completed":
+            		this.data.set("taskStatus","over");
+            		break;
+            }
+		},
+		changeTask: function(e)  {
+			console.log(e.target.className);
+			switch(e.target.className) {
+				case "complete":
+				    this.data.set("taskStatus","over");
+
+				    break;
+				case "wait":
+				    this.data.set("taskStatus","pause");
+				    break;
+				case "doing":
+				    this.data.set("taskStatus","now");
+				    break;
+				case "del":
+				    //还需要在Todos中删除
+				    e.target.parentNode.parentNode.parentNode.remove();
+				    break;
+				case "compile":
+				    this.data.set("active",true);
+				    // 未完成
+				    break;
+			}
+		}		
+	}
+</script>
+
