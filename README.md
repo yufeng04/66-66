@@ -1,4 +1,6 @@
-todos-esnext
+## 一个不成熟的框架，基本用法与Vue相似，但又有许多不同
+
+todos-San
 ===
 
 > todos demo use `.san` components and `esnext`
